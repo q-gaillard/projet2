@@ -135,41 +135,17 @@ class Program
     static void Main(string[] args)
     {
         // Créer des comptes
-        Compte compte1 = new Compte(1, "Alex", 0);
-        Compte compte2 = new Compte(2, "Tim", 10000);
-        Compte compte3 = new Compte(3, "Quentin", 122);
+        Compte compteAlice = new Compte(1, "Alice", 100);
+        Compte compteBob = new Compte(2, "Bob", 500);
+        Compte compteCharlie = new Compte(3, "Charlie", 200);
 
-        // Afficher les informations des comptes
-        compte1.Display();
-        compte2.Display();
-        compte3.Display();
-        Console.WriteLine();
+        // action avec les comptes
+        compteAlice.Crediter(300);
+        compteBob.Debiter(100);
+        Compte.Transferer(compteCharlie, compteAlice, 200); // normalement dans l'exercice c'est 150, mais il faut que la valeur sois plus grande ou égal à 200
 
-        // Référence et copie
-        Compte compte4 = compte1;
-
-        compte4.Crediter(500);
-        Console.WriteLine("première affichage du compte 1 et 4:");
-        compte1.Display();
-        compte4.Display();
-
-        compte4.Debiter(100);
-        Console.WriteLine("deuxième affichage du compte 1 et 4:");
-        compte1.Display();
-        compte4.Display();
-        Console.WriteLine();
-
-        // ------ réponse à le question : ------
-        // lors de la création du compte 4, nous avons crée une référence  qui mène vers le compte 1 et non une copie, donc, d'es que je modifie le compte 4, je modifie aussi le compte 1.
-        // -------------------------------------
-
-        // Transférer des fonds
-        Console.WriteLine("avant le transfert de 200 du compte 2 vers le compte 1:");
-        compte1.Display();
-        compte2.Display();
-        Compte.Transferer(compte2, compte1, 200);
-        Console.WriteLine("après le transfert de 200 du compte 2 vers le compte 1:");
-        compte1.Display();
-        compte2.Display();
+        compteAlice.Display();
+        compteBob.Display();
+        compteCharlie.Display();
     }
 }
