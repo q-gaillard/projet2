@@ -2,9 +2,9 @@ using System.ComponentModel.DataAnnotations;
 
 class Compte
 {
-    private int numero;
-    private string nom;
-    private double solde;
+    protected int numero;
+    protected string nom;
+    protected double solde;
     
     public void SetNumero(int numero)
     {
@@ -69,55 +69,42 @@ class Compte
 
     public void Debiter(double montant)
     {
-        if (montant <= solde)
+        if (montant > 0)
         {
-            if (montant > 0)
-            {
-                solde -= montant;
-            }
-            else
-            {
-                Console.WriteLine("|!| Le montant doit être positif. |!|");
-            }
+            solde -= montant;
         }
         else
         {
-            Console.WriteLine("|!| Fonds insuffisants pour débiter le compte. |!|");
+            Console.WriteLine("|!| Le montant doit être positif. |!|");
         }
+
     }
 
     static public void Transferer(Compte compteSource, Compte compteDestinataire, double montant)
     {
-        if (montant <= compteSource.solde)
+        if (montant > 199)
         {
-            if (montant > 199)
+            if (compteSource.numero == compteDestinataire.numero)
             {
-                if (compteSource.numero == compteDestinataire.numero)
-                {
-                    Console.WriteLine("|!| Impossible de transférer vers le même compte. |!|");
+                Console.WriteLine("|!| Impossible de transférer vers le même compte. |!|");
                     
-                }
-                else
-                {
-                    compteSource.solde -= montant;
-                    compteDestinataire.solde += montant;
-                }
             }
             else
             {
-                if (montant <= 0)
-                {
-                    Console.WriteLine("|!| Le montant doit être positif. |!|");
-                }
-                else
-                {
-                    Console.WriteLine("|!| Le montant dois être égal ou plus grand que 200. |!|");
-                }
+                compteSource.solde -= montant;
+                compteDestinataire.solde += montant;
             }
         }
         else
         {
-            Console.WriteLine("|!| Fonds insuffisants pour transférer. |!|");
+            if (montant <= 0)
+            {
+                Console.WriteLine("|!| Le montant doit être positif. |!|");
+            }
+            else
+            {
+                Console.WriteLine("|!| Le montant dois être égal ou plus grand que 200. |!|");
+            }
         }
     }
 }

@@ -1,23 +1,9 @@
-class CompteEpargne
+class CompteEpargne : Compte
 {
-    private int numero;
-    private string nom;
-    private double solde;
+
     private double tauxInteret;
     private string dateOuverture;
     
-    public void SetNumero(int numero)
-    {
-        this.numero = numero;
-    }
-    public void SetNom(string nom)
-    {
-        this.nom = nom;
-    }
-    public void SetSolde(double solde)
-    {
-        this.solde = solde;
-    }
     public void SetTauxInteret(double tauxInteret)
     {
         this.tauxInteret = tauxInteret;
@@ -27,18 +13,6 @@ class CompteEpargne
         this.dateOuverture = dateOuverture;
     }
 
-    public int GetNumero()
-    {
-        return this.numero;
-    }
-    public string GetNom()
-    {
-        return this.nom;
-    }
-    public double GetSolde()
-    {
-        return this.solde;
-    }
     public double GetTauxInteret()
     {
         return this.tauxInteret;
@@ -48,7 +22,7 @@ class CompteEpargne
         return this.dateOuverture;
     }
 
-    public CompteEpargne(int numero, string nom, double solde, double tauxInteret ,string dateOuverture)
+    public CompteEpargne(int numero, string nom, double solde, double tauxInteret ,string dateOuverture) : base(numero, nom, solde)
     {
         this.numero = numero;
         this.nom = nom;
@@ -68,23 +42,13 @@ class CompteEpargne
 
     public void Display()
     {
-        Console.WriteLine("------ Informations du compte : ------");
+        Console.WriteLine("------ Informations du compte épargne : ------");
         Console.WriteLine($"Numéro de compte : {numero}");
         Console.WriteLine($"Nom du titulaire : {nom}");
+        Console.WriteLine($"Date d'ouverture : {dateOuverture}");
         Console.WriteLine($"Solde : {solde}");
-        Console.WriteLine("---------------------------------------");
-    }
-
-    public void Crediter(double montant)
-    {
-        if (montant > 0)
-        {           
-             solde += montant;
-        }
-        else
-        {
-            Console.WriteLine("|!| Le montant doit être positif. |!|");
-        }
+        Console.WriteLine($"taux d'intérêt : {tauxInteret}");
+        Console.WriteLine("----------------------------------------------");
     }
 
     public void Debiter(double montant)

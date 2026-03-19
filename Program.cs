@@ -46,5 +46,15 @@ class Program
         compteEmma.Debiter(50);
         Console.WriteLine($"nombre d'opération d'Emma : {compteEmma.GetNombreOperation()}");
 
+        //création de comptes spéciaux après modification en héritage
+        Console.WriteLine("\nafficher des comptes après héritage\n");
+        Compte compteFarid = new Compte(20, "Farid", 1500);
+        CompteEpargne compteGina = new CompteEpargne(21, "Gina", 1000, 0.3, "15/01/2024");
+        ComptePayant compteHugo = new ComptePayant(22, "Hugo", 700, 3, 0);
+
+        //action
+        compteFarid.Display();
+        compteGina.Display();
+        compteHugo.Display();
     }
 }

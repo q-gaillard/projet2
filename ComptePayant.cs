@@ -1,25 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-class ComptePayant
+class ComptePayant : Compte
 {
-    private int numero;
-    private string nom;
-    private double solde;
+
     private double commission;
     private int nombreOperation;
     
-    public void SetNumero(int numero)
-    {
-        this.numero = numero;
-    }
-    public void SetNom(string nom)
-    {
-        this.nom = nom;
-    }
-    public void SetSolde(double solde)
-    {
-        this.solde = solde;
-    }
     public void SetCommission(double commission)
     {
         this.commission = commission;
@@ -29,18 +15,6 @@ class ComptePayant
         this.nombreOperation = nombreOperation;
     }
 
-    public int GetNumero()
-    {
-        return this.numero;
-    }
-    public string GetNom()
-    {
-        return this.nom;
-    }
-    public double GetSolde()
-    {
-        return this.solde;
-    }
     public double GetCommission()
     {
         return this.commission;
@@ -50,7 +24,7 @@ class ComptePayant
         return this.nombreOperation;
     }
 
-    public ComptePayant(int numero, string nom, double solde, double commission, int nombreOperation)
+    public ComptePayant(int numero, string nom, double solde, double commission, int nombreOperation) : base(numero, nom, solde)
     {
         this.numero = numero;
         this.nom = nom;
@@ -75,11 +49,13 @@ class ComptePayant
 
     public void Display()
     {
-        Console.WriteLine("------ Informations du compte : ------");
+        Console.WriteLine("------ Informations du compte payant : ------");
         Console.WriteLine($"Numéro de compte : {numero}");
         Console.WriteLine($"Nom du titulaire : {nom}");
         Console.WriteLine($"Solde : {solde}");
-        Console.WriteLine("---------------------------------------");
+        Console.WriteLine($"commission : {commission}");
+        Console.WriteLine($"nombre d'opération : {nombreOperation}");
+        Console.WriteLine("---------------------------------------------");
     }
 
     public void Crediter(double montant)
