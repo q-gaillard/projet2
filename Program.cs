@@ -56,5 +56,29 @@ class Program
         compteFarid.Display();
         compteGina.Display();
         compteHugo.Display();
+
+        Console.WriteLine();
+        compteFarid.Crediter(200);
+        compteFarid.Debiter(400);
+        compteFarid.Display();
+
+        compteGina.Crediter(150);
+        compteGina.Debiter(300);
+        compteGina.Debiter(1000);
+        compteGina.Display();
+
+        compteHugo.Crediter(100);
+        compteHugo.Debiter(200);
+        compteHugo.Debiter(50);
+        compteHugo.Display();
+
+        Compte.Transferer(compteFarid, compteGina, 100);
+        Compte.Transferer(compteGina, compteHugo, 50);
+        Compte.Transferer(compteHugo, compteFarid, 2000);
+
+        Console.WriteLine();
+        compteFarid.Display();
+        compteGina.Display();
+        compteHugo.Display();
     }
 }
