@@ -1,10 +1,12 @@
-class CompteEpargne
+using System.ComponentModel.DataAnnotations;
+
+class ComptePayant
 {
     private int numero;
     private string nom;
     private double solde;
-    private double tauxInteret;
-    private string dateOuverture;
+    private double commission;
+    private int nombreOperation;
     
     public void SetNumero(int numero)
     {
@@ -18,13 +20,13 @@ class CompteEpargne
     {
         this.solde = solde;
     }
-    public void SetTauxInteret(double tauxInteret)
+    public void SetCommission(double commission)
     {
-        this.tauxInteret = tauxInteret;
+        this.commission = commission;
     }
-    public void SetDateOuverture(string dateOuverture)
+    public void SetNombreCommission(int nombreOperation)
     {
-        this.dateOuverture = dateOuverture;
+        this.nombreOperation = nombreOperation;
     }
 
     public int GetNumero()
@@ -39,31 +41,36 @@ class CompteEpargne
     {
         return this.solde;
     }
-    public double GetTauxInteret()
+    public double GetCommission()
     {
-        return this.tauxInteret;
+        return this.commission;
     }
-    public string GetDateOuverture()
+    public int GetNombreOperation()
     {
-        return this.dateOuverture;
+        return this.nombreOperation;
     }
 
-    public CompteEpargne(int numero, string nom, double solde, double tauxInteret ,string dateOuverture)
+    public ComptePayant(int numero, string nom, double solde, double commission, int nombreOperation)
     {
         this.numero = numero;
         this.nom = nom;
         this.solde = solde;
-        this.tauxInteret = tauxInteret;
-        this.dateOuverture = dateOuverture;
+        this.commission = commission;
+        this.nombreOperation = nombreOperation;
     }
 
-    public CompteEpargne()
+    public ComptePayant()
     {
         this.numero = 0;
         this.nom = "Inconnu";
         this.solde = 0;
-        this.tauxInteret = 0;
-        this.dateOuverture = "00/00/0000";
+        this.commission = 0;
+        this.nombreOperation = 0;
+    }
+
+    private void AddOperation()
+    {
+        this.nombreOperation = this.nombreOperation + 1;
     }
 
     public void Display()
@@ -80,6 +87,7 @@ class CompteEpargne
         if (montant > 0)
         {           
              solde += montant;
+             AddOperation();
         }
         else
         {
@@ -94,6 +102,7 @@ class CompteEpargne
             if (montant > 0)
             {
                 solde -= montant;
+                AddOperation();
             }
             else
             {
@@ -106,7 +115,7 @@ class CompteEpargne
         }
     }
 
-    static public void Transferer(CompteEpargne compteSource, CompteEpargne compteDestinataire, double montant)
+    static public void Transferer(ComptePayant compteSource, ComptePayant compteDestinataire, double montant)
     {
         if (montant <= compteSource.solde)
         {
@@ -121,6 +130,8 @@ class CompteEpargne
                 {
                     compteSource.solde -= montant;
                     compteDestinataire.solde += montant;
+                    compteSource.AddOperation();
+                    compteDestinataire.AddOperation();
                 }
             }
             else

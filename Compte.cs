@@ -39,16 +39,9 @@ class Compte
         this.solde = solde;
     }
 
-    public Compte(int numero, string nom)
+    public Compte()
     {
-        this.numero = numero;
-        this.nom = nom;
-        this.solde = 0;
-    }
-
-    public Compte(int numéro)
-    {
-        this.numero = numero;
+        this.numero = 0;
         this.nom = "Inconnu";
         this.solde = 0;
     }

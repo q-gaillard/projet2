@@ -16,6 +16,7 @@ class Program
     static void Main(string[] args)
     {
         // Créer des comptes
+        Console.WriteLine("afficher des comptes normaux :\n");
         Compte compteAlice = new Compte(1, "Alice", 100);
         Compte compteBob = new Compte(2, "Bob", 500);
         Compte compteCharlie = new Compte(3, "Charlie", 200);
@@ -28,5 +29,22 @@ class Program
         compteAlice.Display();
         compteBob.Display();
         compteCharlie.Display();
+
+        // Crée des comptes spéciaux
+        Console.WriteLine("\nafficher des comptes spéciaux\n");
+        CompteEpargne compteDiane = new CompteEpargne(10, "Diane", 800, 0.04, "01/09/2024");
+        ComptePayant compteEmma = new ComptePayant(11, "Emma", 600, 2, 0);
+
+        //action avec les comptes spéciaux
+        compteDiane.Crediter(100);
+        compteDiane.Debiter(200);
+        compteDiane.Debiter(800);
+        compteDiane.Display();
+
+        compteEmma.Crediter(50);
+        compteEmma.Debiter(100);
+        compteEmma.Debiter(50);
+        Console.WriteLine($"nombre d'opération d'Emma : {compteEmma.GetNombreOperation()}");
+
     }
 }
